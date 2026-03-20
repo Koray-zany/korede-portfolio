@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korede Adelaja &mdash; Senior Product Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+/* ═══════════════════════════════════════
+   KOREDE ADELAJA — PORTFOLIO
+   styles.css — Edit colours at the top
+═══════════════════════════════════════ */
+
+/* ─── COLOUR TOKENS ──────────────────── */
+/* DARK MODE (default) */
+:root {
+  --bg:      #050d1a;
+  --bg2:     #091222;
+  --bg3:     #0d1a2e;
+  --accent:  #2563eb;
+  --accent2: #1d4ed8;
+  --accentlt:#3b82f6;
+  --white:   #e8eef8;
+  --muted:   #5a7094;
+  --border:  #1a2d4a;
+  --card:    #0a1628;
+  --teal:    #38bdf8;
+}
+
+/* LIGHT MODE */
+html.light {
+  --bg:      #f0f4ff;
+  --bg2:     #e4ecff;
+  --bg3:     #dce6fc;
+  --accent:  #1d4ed8;
+  --accent2: #1e40af;
+  --accentlt:#2563eb;
+  --white:   #0f172a;
+  --muted:   #4b6080;
+  --border:  #b8ccee;
+  --card:    #ffffff;
+  --teal:    #0369a1;
+}
+
+/* ─── RESET ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+  transition: background .4s, color .4s;
+}
+
+/* ─── CURSOR ─────────────────────────── */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform .15s;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  opacity: .5; transition: all .25s;
+}
+
+/* ─── GRAIN OVERLAY ──────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1000; opacity: .25;
+}
+
+/* ─── NAVIGATION ─────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 1.2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: all .3s;
+}
+nav.scrolled {
+  background: rgba(5,13,26,.96);
+  border-bottom-color: var(--border);
+  backdrop-filter: blur(12px);
+}
+html.light nav.scrolled { background: rgba(240,244,255,.96); }
+
+.nav-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: .85rem; color: var(--accent);
+  letter-spacing: .1em; text-decoration: none;
+}
+
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; color: var(--muted);
+  text-decoration: none; letter-spacing: .08em;
+  text-transform: uppercase; transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* Theme toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  cursor: pointer; font-size: 1rem;
+  transition: all .2s;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--white);
+  transition: all .3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  z-index: 400;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem; color: var(--white);
+  text-decoration: none; letter-spacing: .12em;
+  text-transform: uppercase; transition: color .2s;
+}
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: none; border: none;
+  font-size: 1.8rem; color: var(--muted);
+  cursor: pointer; line-height: 1;
+}
+
+/* ─── BUTTONS ────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .75rem;
+  background: var(--accent); color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: .8rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  text-decoration: none; padding: 1rem 2rem;
+  transition: all .2s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: .75rem;
+  border: 1px solid var(--border); color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: .8rem; letter-spacing: .08em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 1rem 2rem; transition: all .2s;
+  background: none; cursor: pointer;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* ─── HERO ───────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 4rem 6rem;
+  position: relative; overflow: hidden;
+}
+.hero-bg-text {
+  position: absolute; top: 50%; right: -2rem;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(100px, 18vw, 280px);
+  font-weight: 900; color: transparent;
+  -webkit-text-stroke: 1px rgba(37,99,235,.1);
+  line-height: 1; pointer-events: none;
+  user-select: none; white-space: nowrap;
+}
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem; color: var(--accent);
+  letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeUp .8s ease .2s forwards;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 900; line-height: .95;
+  letter-spacing: -.02em; margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp .8s ease .4s forwards;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-bottom {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; gap: 2rem;
+  opacity: 0; animation: fadeUp .8s ease .6s forwards;
+}
+.hero-desc { max-width: 500px; font-size: 1rem; color: var(--muted); line-height: 1.7; }
+.hero-desc strong { color: var(--white); font-weight: 500; }
+.hero-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; }
+.scroll-indicator {
+  position: absolute; bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: .5rem;
+  opacity: 0; animation: fadeIn 1s ease 1.2s forwards;
+}
+.scroll-indicator span {
+  font-family: 'DM Mono', monospace;
+  font-size: .65rem; color: var(--muted);
+  letter-spacing: .2em; text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+/* ─── TICKER ─────────────────────────── */
+.ticker-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0; background: var(--bg2);
+}
+.ticker { display: flex; gap: 3rem; white-space: nowrap; animation: ticker 25s linear infinite; }
+.ticker-item {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem; color: var(--muted);
+  letter-spacing: .15em; text-transform: uppercase; flex-shrink: 0;
+}
+.ticker-item span { color: var(--accent); margin: 0 .5rem; }
+
+/* ─── STATS ──────────────────────────── */
+#stats {
+  padding: 3rem 4rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 2rem;
+  border-right: 1px solid var(--border);
+  transition: background .3s;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: var(--bg3); }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900; color: var(--accent);
+  line-height: 1; margin-bottom: .5rem;
+}
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem; color: var(--muted);
+  letter-spacing: .1em; text-transform: uppercase; line-height: 1.5;
+}
+
+/* ─── SECTION BASICS ─────────────────── */
+section { padding: 8rem 4rem; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem; color: var(--accent);
+  letter-spacing: .25em; text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--accent); }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -.02em; margin-bottom: 1rem;
+}
+
+/* ─── ABOUT ──────────────────────────── */
+#about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.about-text { font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+.about-text strong { color: var(--white); font-weight: 500; }
+.wins-title {
+  font-family: 'DM Mono', monospace; font-size: .7rem;
+  color: var(--accent); letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 2rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.win-item {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 1.5rem;
+  transition: all .2s;
+}
+.win-item:hover { padding-left: .5rem; }
+.win-arrow { color: var(--accent); font-size: 1rem; margin-top: .1rem; flex-shrink: 0; }
+.win-text { font-size: .95rem; color: var(--muted); line-height: 1.6; }
+.win-text strong { color: var(--white); }
+
+/* ─── PROJECTS ───────────────────────── */
+#projects { background: var(--bg2); }
+.projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem; }
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.project-card {
+  background: var(--card); padding: 2.5rem;
+  position: relative; overflow: hidden;
+  transition: all .3s; text-decoration: none;
+  color: inherit; display: flex;
+  flex-direction: column; min-height: 300px;
+}
+.project-card::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 3px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.project-card:hover::before { transform: scaleX(1); }
+.project-card:hover { background: var(--bg3); }
+.project-card.featured { grid-column: span 2; background: var(--bg3); }
+.project-num { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); letter-spacing: .2em; margin-bottom: 1.5rem; }
+.project-tag {
+  display: inline-block; font-family: 'DM Mono', monospace;
+  font-size: .65rem; color: var(--accent);
+  border: 1px solid rgba(37,99,235,.35);
+  padding: .25rem .6rem; letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.project-title { font-family: 'Playfair Display', serif; font-size: clamp(17px, 2vw, 24px); font-weight: 700; line-height: 1.2; margin-bottom: .5rem; }
+.project-role { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); letter-spacing: .08em; margin-bottom: .75rem; }
+.project-desc { font-size: .88rem; color: var(--muted); line-height: 1.6; flex: 1; }
+.project-metric { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--accent); letter-spacing: .05em; }
+.project-arrow { position: absolute; top: 2.5rem; right: 2.5rem; color: var(--muted); font-size: 1.2rem; transition: all .2s; }
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(3px,-3px); }
+
+/* ─── CASE STUDIES ───────────────────── */
+#casestudies { background: var(--bg); }
+.case-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: var(--border); margin-top: 4rem; }
+.case-card {
+  background: var(--bg2); padding: 3rem 4rem;
+  color: inherit; transition: background .2s;
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 4rem; align-items: start;
+}
+.case-card:hover { background: var(--bg3); }
+.case-num { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--accent); letter-spacing: .2em; margin-bottom: 1rem; }
+.case-company { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; line-height: 1.2; }
+.case-role { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--muted); letter-spacing: .08em; margin-bottom: 1.5rem; }
+.case-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: .62rem; color: var(--accent); border: 1px solid rgba(37,99,235,.35); padding: .2rem .5rem; letter-spacing: .1em; text-transform: uppercase; }
+.case-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; line-height: 1.3; }
+.case-body { font-size: .92rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+.case-impacts { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.5rem; }
+.case-impact { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--teal); border: 1px solid rgba(56,189,248,.25); padding: .3rem .7rem; letter-spacing: .05em; }
+.case-link { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: .5rem; }
+
+/* ─── WRITING ────────────────────────── */
+#writing { background: var(--bg2); }
+.writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 4rem; }
+.writing-card { background: var(--card); padding: 2.5rem; text-decoration: none; color: inherit; transition: background .2s; display: block; }
+.writing-card:hover { background: var(--bg3); }
+.writing-series { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; }
+.writing-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; line-height: 1.3; margin-bottom: .75rem; color: var(--white); }
+.writing-excerpt { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+.writing-link { display: inline-flex; align-items: center; gap: .5rem; font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin-top: 1.2rem; }
+
+/* ─── SKILLS ─────────────────────────── */
+#skills { background: var(--bg3); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 4rem; }
+.skill-block { background: var(--bg3); padding: 2.5rem; transition: background .2s; }
+.skill-block:hover { background: var(--bg); }
+.skill-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+.skill-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--white); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.skill-tag { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); border: 1px solid var(--border); padding: .3rem .6rem; letter-spacing: .05em; transition: all .2s; }
+.skill-tag:hover { color: var(--accent); border-color: rgba(37,99,235,.4); }
+
+/* ─── CERTS ──────────────────────────── */
+#certs { background: var(--bg); padding: 5rem 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.certs-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.cert-item { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; border: 1px solid var(--border); transition: all .2s; }
+.cert-item:hover { border-color: rgba(37,99,235,.4); background: var(--bg3); }
+.cert-icon { font-size: 1.4rem; }
+.cert-name { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--white); }
+.cert-issuer { font-family: 'DM Mono', monospace; font-size: .62rem; color: var(--muted); margin-top: .2rem; }
+
+/* ─── CONTACT ────────────────────────── */
+#contact { background: var(--bg); text-align: center; padding: 10rem 4rem; position: relative; overflow: hidden; }
+.contact-bg { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: clamp(70px, 14vw, 200px); font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(37,99,235,.06); white-space: nowrap; pointer-events: none; }
+.contact-eyebrow { font-family: 'DM Mono', monospace; font-size: .75rem; color: var(--accent); letter-spacing: .25em; text-transform: uppercase; margin-bottom: 2rem; }
+.contact-title { font-family: 'Playfair Display', serif; font-size: clamp(38px, 6vw, 80px); font-weight: 900; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1.5rem; }
+.contact-title em { font-style: italic; color: var(--accent); }
+.contact-sub { font-size: 1rem; color: var(--muted); max-width: 440px; margin: 0 auto 3rem; line-height: 1.7; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+/* ─── FOOTER ─────────────────────────── */
+footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); letter-spacing: .1em; }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); text-decoration: none; letter-spacing: .1em; transition: color .2s; }
+.footer-links a:hover { color: var(--accent); }
+
+/* ─── REVEAL ANIMATION ───────────────── */
+.reveal { opacity: 0; transform: translateY(40px); transition: all .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── KEYFRAMES ──────────────────────── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(30px) } to { opacity:1; transform:translateY(0) } }
+@keyframes fadeIn   { from { opacity:0 } to { opacity:1 } }
+@keyframes scrollPulse { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+@keyframes ticker   { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TABLET (max 1024px)
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 1.2rem 2rem; }
+  #hero { padding: 0 2rem 5rem; }
+  section { padding: 6rem 2rem; }
+  #stats { padding: 3rem 2rem; }
+  #about-grid { gap: 3rem; }
+  .case-card { padding: 2.5rem 2rem; gap: 2.5rem; }
+  #certs { padding: 4rem 2rem; }
+  #contact { padding: 8rem 2rem; }
+  footer { padding: 2rem 2rem; }
+  .projects-grid { grid-template-columns: repeat(2,1fr); }
+  .project-card.featured { grid-column: span 2; }
+  .skills-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE (max 768px)
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hide cursor on touch devices */
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+
+  /* Nav */
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  /* Hero */
+  #hero { padding: 0 1.5rem 4rem; }
+  .hero-bg-text { font-size: clamp(80px, 22vw, 140px); right: -1rem; }
+  .hero-name { font-size: clamp(44px, 12vw, 72px); }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+  .hero-cta { align-items: flex-start; width: 100%; }
+  .hero-cta a { width: 100%; justify-content: center; }
+
+  /* Stats */
+  #stats { grid-template-columns: repeat(2,1fr); padding: 2rem 1.5rem; }
+  .stat-item { padding: 1.5rem 1rem; }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+
+  /* Sections */
+  section { padding: 5rem 1.5rem; }
+
+  /* About */
+  #about-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+  /* Projects */
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: span 1; }
+  .project-card { min-height: auto; }
+
+  /* Case studies */
+  .case-card { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem; }
+  .case-grid { margin-top: 2rem; }
+
+  /* Writing */
+  .writing-grid { grid-template-columns: 1fr; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* Certs */
+  #certs { padding: 4rem 1.5rem; }
+  .certs-inner { flex-direction: column; align-items: flex-start; }
+  .cert-item { width: 100%; }
+
+  /* Contact */
+  #contact { padding: 6rem 1.5rem; }
+  .contact-links { flex-direction: column; align-items: center; }
+  .contact-links a { width: 100%; justify-content: center; }
+
+  /* Footer */
+  footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  .footer-links { justify-content: center; }
+
+  /* Projects header */
+  .projects-header { flex-direction: column; align-items: flex-start; }
+}
+
+  </style>
+</head>
+<body>
+
+</head>
+<body>
+
+  <!-- CURSOR (desktop only) -->
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══ NAVIGATION ════════════════════════════════════ -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">KA&reg;</a>
+
+    <!-- Desktop links -->
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#casestudies">Case Studies</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <!-- Theme toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">&#9790;</span>
+      </button>
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileClose">&times;</button>
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#casestudies">Case Studies</a>
+    <a href="#writing">Writing</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg-text">PRODUCT</div>
+    <!-- EDIT: Change your tag line below -->
+    <div class="hero-tag">Senior Product Manager &nbsp;&middot;&nbsp; Lagos, Nigeria &nbsp;&middot;&nbsp; Open to Global Roles</div>
+    <!-- EDIT: Your name -->
+    <h1 class="hero-name">Korede<br><em>Adelaja</em></h1>
+    <div class="hero-bottom">
+      <!-- EDIT: Your hero description -->
+      <p class="hero-desc">
+        I build products where <strong>trust is the core feature</strong>. Payments. Fintech. Telecom.<br><br>
+        The kind of infrastructure where getting it wrong is not just a bad metric ;
+        it is someone&apos;s money on the line.
+        <strong>6+ years</strong> shipping regulated products that actually work for the people using them.
+      </p>
+      <div class="hero-cta">
+        <!-- EDIT: Your email and CV link -->
+        <a href="mailto:adelajaadesolak@gmail.com" class="btn-primary">Let&apos;s Talk &nearr;</a>
+        <a href="https://drive.google.com/file/d/1higKZw-b7GZqbJ5tYh67kyvQVf_WBRZf/view?usp=sharing" target="_blank" class="btn-outline">Download CV &darr;</a>
+      </div>
+    </div>
+    <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- ═══ TICKER ══════════════════════════════════════════ -->
+  <!-- EDIT: Add/remove ticker items below -->
+  <div class="ticker-wrap"><div class="ticker">
+    <span class="ticker-item">Payments Infrastructure <span>&starf;</span></span>
+    <span class="ticker-item">Escrow Architecture <span>&starf;</span></span>
+    <span class="ticker-item">Cross-Border Remittance <span>&starf;</span></span>
+    <span class="ticker-item">KYC &amp; AML <span>&starf;</span></span>
+    <span class="ticker-item">SEPA &middot; Faster Payments <span>&starf;</span></span>
+    <span class="ticker-item">Wallet &amp; Ledger Systems <span>&starf;</span></span>
+    <span class="ticker-item">MVNO &middot; VoIP &middot; ISP <span>&starf;</span></span>
+    <span class="ticker-item">Fintech &middot; SaaS &middot; Telecom <span>&starf;</span></span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">Payments Infrastructure <span>&starf;</span></span>
+    <span class="ticker-item">Escrow Architecture <span>&starf;</span></span>
+    <span class="ticker-item">Cross-Border Remittance <span>&starf;</span></span>
+    <span class="ticker-item">KYC &amp; AML <span>&starf;</span></span>
+    <span class="ticker-item">SEPA &middot; Faster Payments <span>&starf;</span></span>
+    <span class="ticker-item">Wallet &amp; Ledger Systems <span>&starf;</span></span>
+    <span class="ticker-item">MVNO &middot; VoIP &middot; ISP <span>&starf;</span></span>
+    <span class="ticker-item">Fintech &middot; SaaS &middot; Telecom <span>&starf;</span></span>
+  </div></div>
+
+  <!-- ═══ STATS ════════════════════════════════════════════ -->
+  <!-- EDIT: Update your 4 headline numbers -->
+  <div id="stats">
+    <div class="stat-item reveal"><div class="stat-num">6+</div><div class="stat-label">Years of PM<br>Experience</div></div>
+    <div class="stat-item reveal"><div class="stat-num">&naira;3.8M</div><div class="stat-label">GMV at<br>SAFETRANSACT</div></div>
+    <div class="stat-item reveal"><div class="stat-num">40%</div><div class="stat-label">Txn Abandonment<br>Reduction</div></div>
+    <div class="stat-item reveal"><div class="stat-num">202%</div><div class="stat-label">Retention Lift<br>HelloMe Money</div></div>
+  </div>
+
+  <!-- ═══ ABOUT ════════════════════════════════════════════ -->
+  <section id="about">
+    <div id="about-grid">
+      <div class="reveal">
+        <div class="section-label">About Me</div>
+        <!-- EDIT: Your section headline -->
+        <h2 class="section-title">I build the<br><em style="font-style:italic;color:var(--accent)">infrastructure</em><br>trust runs on.</h2>
+        <!-- EDIT: Your bio paragraphs -->
+        <p class="about-text">I work as a Product Manager on infrastructure-heavy products in <strong>payments, fintech, telecom, and SaaS</strong>. I have led and contributed to escrow platforms, cross-border payment systems, telecom dashboards, and lending products ; working closely with engineering, compliance, and operations.</p>
+        <p class="about-text">My work lives at the intersection of <strong>product, risk, and execution</strong>, where trade-offs matter and clarity is essential.</p>
+        <p class="about-text">I am also the co-founder of <strong>SAFETRANSACT</strong> ; building the escrow layer for Nigeria&apos;s social commerce market.</p>
+        <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap">
+          <a href="mailto:adelajaadesolak@gmail.com" class="btn-primary">Email Me</a>
+          <a href="https://linkedin.com/in/koredeadelaja" target="_blank" class="btn-outline">LinkedIn &nearr;</a>
+        </div>
+      </div>
+      <!-- EDIT: Your key wins -->
+      <div class="reveal">
+        <div class="wins-title">Key Wins</div>
+        <div class="win-item"><span class="win-arrow">&rarr;</span><div class="win-text">Co-founded <strong>SAFETRANSACT</strong> from zero ; &naira;3.8M GMV in 3 months</div></div>
+        <div class="win-item"><span class="win-arrow">&rarr;</span><div class="win-text">Reduced <strong>transaction abandonment by 40%</strong> through better escrow flows</div></div>
+        <div class="win-item"><span class="win-arrow">&rarr;</span><div class="win-text">Led <strong>payment infrastructure migration</strong> for EU &rarr; Global cross-border remittance corridor</div></div>
+        <div class="win-item"><span class="win-arrow">&rarr;</span><div class="win-text">Designed <strong>15-min loan disbursement</strong> experience via self-service lending redesign</div></div>
+        <div class="win-item"><span class="win-arrow">&rarr;</span><div class="win-text">Increased <strong>retention by 202%</strong> at HelloMe Money via onboarding optimisation</div></div>
+        <div class="win-item"><span class="win-arrow">&rarr;</span><div class="win-text">Launched <strong>MVNO, VoIP &amp; ISP</strong> products across full telecom stack at Imbil</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ══════════════════════════════════════════ -->
+  <section id="projects">
+    <div class="projects-header reveal">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">Products I&apos;ve<br>Shipped</h2>
+      </div>
+      <a href="#casestudies" class="btn-outline">Read Case Studies &darr;</a>
+    </div>
+    <!-- EDIT: Add/remove project cards. Keep .featured on the first/hero card -->
+    <div class="projects-grid reveal">
+      <a href="https://www.mysafetransact.com" target="_blank" class="project-card featured">
+        <div class="project-num">01</div>
+        <span class="project-tag">Fintech &middot; Payments &middot; API</span>
+        <h3 class="project-title">SAFETRANSACT ; Escrow-as-a-Service</h3>
+        <div class="project-role">Chief Product Officer &middot; Co-Founder</div>
+        <p class="project-desc">Built an escrow layer to close the trust gap in Nigeria&apos;s social commerce economy. Conducted discovery with 50+ vendors, designed dual-sided fee model, defined API-first architecture. Secured Bumpa partnership and CBN-licensed infrastructure via 9PSB.</p>
+        <div class="project-metric">&naira;3.8M GMV &middot; 40% less abandonment &middot; Bumpa integration</div>
+        <span class="project-arrow">&nearr;</span>
+      </a>
+      <a href="https://www.hellomemoney.com" target="_blank" class="project-card">
+        <div class="project-num">02</div>
+        <span class="project-tag">Payments &middot; FX &middot; Wallets</span>
+        <h3 class="project-title">HelloMe Money ; Cross-Border Banking</h3>
+        <div class="project-role">Senior Product Manager</div>
+        <p class="project-desc">Led MVP to V2 of a cross-border digital banking platform. Built the core banking engine, multicurrency wallets, in-house double-entry ledger, referral programme, FX comparison tool, and statement generation.</p>
+        <div class="project-metric">+202% retention &middot; SEPA + UK Faster Payments</div>
+        <span class="project-arrow">&nearr;</span>
+      </a>
+      <a href="https://creditwallet.ng" target="_blank" class="project-card">
+        <div class="project-num">03</div>
+        <span class="project-tag">Fintech &middot; Lending &middot; UX</span>
+        <h3 class="project-title">Credit Wallet ; Lending Redesign</h3>
+        <div class="project-role">Principal Product Designer</div>
+        <p class="project-desc">Redesigned self-service loan experience for Nigerian salaried workers. Moved top-up, liquidation, and repayments out of support queues and into the app. Introduced eligibility visibility upfront.</p>
+        <div class="project-metric">15-min disbursement &middot; Reduced support dependency</div>
+        <span class="project-arrow">&nearr;</span>
+      </a>
+      <a href="#casestudies" class="project-card">
+        <div class="project-num">04</div>
+        <span class="project-tag">Telecom &middot; MVNO &middot; VoIP</span>
+        <h3 class="project-title">Imbil Telecom ; MVNO &amp; VoIP</h3>
+        <div class="project-role">Product Manager</div>
+        <p class="project-desc">Unified telecom product flows, launched FTTH broadband availability mapping, and defined VoIP specs across SIP-based infrastructure. Improved delivery velocity through sprint planning.</p>
+        <div class="project-metric">MVNO &middot; VoIP &middot; ISP &middot; FTTH</div>
+        <span class="project-arrow">&nearr;</span>
+      </a>
+      <a href="https://numeri.vc" target="_blank" class="project-card">
+        <div class="project-num">05</div>
+        <span class="project-tag">Web3 &middot; Fintech &middot; VC</span>
+        <h3 class="project-title">Numeri ; Blockchain VC Platform</h3>
+        <div class="project-role">Product Designer</div>
+        <p class="project-desc">Simplified blockchain investing for accredited users. Designed full onboarding, fund selection, KYC flow, investor dashboard, crypto payment gateway (USDT, BTC, ETH), and redemption. Live product.</p>
+        <div class="project-metric">Live &middot; 3 fund types &middot; Crypto payment gateway</div>
+        <span class="project-arrow">&nearr;</span>
+      </a>
+      <a href="#" class="project-card">
+        <div class="project-num">06</div>
+        <span class="project-tag">Lending &middot; Risk &middot; BNPL</span>
+        <h3 class="project-title">Dedukt ; Risk Profiling &amp; BNPL</h3>
+        <div class="project-role">Product Manager</div>
+        <p class="project-desc">Built borrower database and risk profiling for lenders to optimise recovery. Also designed Dedukt BNPL ; a flexible buy-now-pay-later platform enabling installment payments.</p>
+        <div class="project-metric">Risk profiling &middot; BNPL &middot; Recovery optimisation</div>
+        <span class="project-arrow">&nearr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ CASE STUDIES ═══════════════════════════════════════ -->
+  <section id="casestudies">
+    <div class="reveal">
+      <div class="section-label">Deep Dives</div>
+      <h2 class="section-title">Case Studies</h2>
+    </div>
+    <!-- EDIT: Each .case-card is one case study -->
+    <div class="case-grid reveal">
+
+      <div class="case-card">
+        <div>
+          <div class="case-num">CS&nbsp;01</div>
+          <div class="case-company">SAFETRANSACT</div>
+          <div class="case-role">Co-founder &amp; CPO</div>
+          <span class="case-tag">Fintech &middot; Escrow</span><br><br>
+          <a href="https://www.mysafetransact.com" target="_blank" class="case-link">Live Product &nearr;</a>
+        </div>
+        <div>
+          <h3 class="case-title">Building Escrow Infrastructure for Nigeria&apos;s Social Commerce Market</h3>
+          <p class="case-body">Social commerce in Nigeria runs on WhatsApp and Instagram, but trust is broken. Buyers fear scams; sellers fear fake transfers. I led product from day one ; conducting discovery with 50+ vendors, designing end-to-end escrow flows covering buyer protection, seller confirmation, and dispute resolution. Built a dual-sided fee model and defined an API-first architecture for marketplace integrations. Secured CBN-licensed fund holding via 9PSB.</p>
+          <p class="case-body">Key decisions: tiered pricing (1.5-3% buyer fee, flat seller fee), dispute framework with under 5% manual intervention rate, and API strategy that led directly to Bumpa partnership.</p>
+          <div class="case-impacts">
+            <span class="case-impact">&naira;3.8M GMV in 3 months</span>
+            <span class="case-impact">40% less abandoned transactions</span>
+            <span class="case-impact">Bumpa partnership secured</span>
+            <span class="case-impact">CBN-licensed via 9PSB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div>
+          <div class="case-num">CS&nbsp;02</div>
+          <div class="case-company">HelloMe Money</div>
+          <div class="case-role">Senior Product Manager</div>
+          <span class="case-tag">Payments &middot; FX</span><br><br>
+          <a href="https://medium.com/@thezanypm/case-study-building-hellome-money-a-cross-border-digital-banking-platform-356b1286e3ab" target="_blank" class="case-link">Read Case Study &nearr;</a>
+          <br><br><a href="https://www.hellomemoney.com" target="_blank" class="case-link">Live Product &nearr;</a>
+        </div>
+        <div>
+          <h3 class="case-title">Building a Cross-Border Digital Banking Platform ; MVP to V2</h3>
+          <p class="case-body">HelloMe Money was created to remove geographical barriers to payments for individuals and SMEs. I led from MVP through V2 ; building the core banking engine, seamless KYC onboarding, multicurrency wallets (GBP&rarr;EUR conversion), international transfers, and bill payments across mobile and web. Migrated from third-party processor to in-house double-entry ledger infrastructure.</p>
+          <p class="case-body">V2 introduced monetisation (paid currency accounts), FX rate transparency tools, statement generation, referral programme, promo codes, and tuition payment flows for Nigerian students studying abroad.</p>
+          <div class="case-impacts">
+            <span class="case-impact">+202% user retention</span>
+            <span class="case-impact">SEPA + UK Faster Payments</span>
+            <span class="case-impact">FCA / SARB / OFAC compliant</span>
+            <span class="case-impact">In-house ledger migration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div>
+          <div class="case-num">CS&nbsp;03</div>
+          <div class="case-company">Credit Wallet</div>
+          <div class="case-role">Principal Product Designer</div>
+          <span class="case-tag">Lending &middot; UX</span><br><br>
+          <a href="https://creditwallet.ng" target="_blank" class="case-link">Live Product &nearr;</a>
+          <br><br><a href="https://uxplanet.org/improving-the-loan-application-management-on-a-lending-platform-a-ux-case-study-5ef4d76a283a" target="_blank" class="case-link">Read Case Study &nearr;</a>
+        </div>
+        <div>
+          <h3 class="case-title">Redesigning a Lending Experience to Build Trust and Eliminate Support Dependency</h3>
+          <p class="case-body">Princeps Credit Systems provided personal loans to salaried Nigerian workers, but the product was broken by distrust. Borrowers relied heavily on marketers and support staff for basic loan actions. I applied direct experience from the marketing and support team, giving me deep context on user behaviour, objections, and trust barriers before writing a single wireframe.</p>
+          <p class="case-body">Key decisions: simplified onboarding with upfront eligibility visibility; moved loan top-up, liquidation, and manual repayments into self-service flows; reduced application steps; added full loan status transparency.</p>
+          <div class="case-impacts">
+            <span class="case-impact">15-min loan disbursement</span>
+            <span class="case-impact">Self-service top-up &amp; repayment</span>
+            <span class="case-impact">Reduced support dependency</span>
+            <span class="case-impact">Eligibility shown upfront</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div>
+          <div class="case-num">CS&nbsp;04</div>
+          <div class="case-company">Numeri VC</div>
+          <div class="case-role">Product Designer</div>
+          <span class="case-tag">Web3 &middot; Blockchain</span><br><br>
+          <a href="https://numeri.vc" target="_blank" class="case-link">View Live &nearr;</a>
+          <br><br><a href="https://medium.com/design-bootcamp/blockchain-venture-capital-making-it-easier-for-individuals-especially-africans-to-invest-on-the-2cc47177dce" target="_blank" class="case-link">Read Case Study &nearr;</a>
+        </div>
+        <div>
+          <h3 class="case-title">Making Blockchain Investing Accessible for Africans</h3>
+          <p class="case-body">Numeri is a VC firm investing in digital assets and crypto innovations. The challenge: onboard accredited investors into complex blockchain fund structures without friction. I designed the full product ; 4-step onboarding (account creation with accreditation check, fund selection across Blockchain/DeFi/Staking funds, KYC paperwork, application submission), investor dashboard, and crypto payment gateway.</p>
+          <p class="case-body">Key insight: accredited investor eligibility verification must happen at step one, not after full onboarding ; preventing wasted time for ineligible users. Product is live and processing real investments.</p>
+          <div class="case-impacts">
+            <span class="case-impact">Live at numeri.vc</span>
+            <span class="case-impact">4-step accredited onboarding</span>
+            <span class="case-impact">Crypto payment gateway</span>
+            <span class="case-impact">3 fund types</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ WRITING ════════════════════════════════════════════ -->
+  <section id="writing">
+    <div class="reveal">
+      <div class="section-label">Writing</div>
+      <h2 class="section-title">I Write About<br>Product</h2>
+    </div>
+    <!-- EDIT: Each .writing-card is one article -->
+    <div class="writing-grid reveal">
+      <a href="https://medium.com/@thezanypm" target="_blank" class="writing-card">
+        <div class="writing-series">Competitive Strategy &middot; African Tech</div>
+        <h3 class="writing-title">First-Mover (Non)Advantage ; Why Jumia Food Died and Chowdeck Won</h3>
+        <p class="writing-excerpt">Being first does not guarantee winning. A breakdown of what Chowdeck did differently to take the market Jumia pioneered.</p>
+        <span class="writing-link">Read on Medium &nearr;</span>
+      </a>
+      <a href="https://medium.com/@thezanypm" target="_blank" class="writing-card">
+        <div class="writing-series">Product Strategy &middot; Frameworks</div>
+        <h3 class="writing-title">Create Better Product Strategies with Porter&apos;s Five Forces Model</h3>
+        <p class="writing-excerpt">How to apply a classic business framework to modern product strategy ; and why most PMs ignore the tools that could sharpen their thinking.</p>
+        <span class="writing-link">Read on Medium &nearr;</span>
+      </a>
+      <a href="https://medium.com/@thezanypm" target="_blank" class="writing-card">
+        <div class="writing-series">Product Terms Every PM Must Know &middot; #5</div>
+        <h3 class="writing-title">HTTP vs HTTPS: What Every PM Needs to Know When the Site Goes Down</h3>
+        <p class="writing-excerpt">You do not need to be an engineer to understand this. But you absolutely need to understand it to do your job well.</p>
+        <span class="writing-link">Read on Medium &nearr;</span>
+      </a>
+      <a href="https://medium.com/@thezanypm" target="_blank" class="writing-card">
+        <div class="writing-series">Onboarding &middot; Product Fundamentals</div>
+        <h3 class="writing-title">User Onboarding ; How Important Is It Really?</h3>
+        <p class="writing-excerpt">The case for treating onboarding as a product in itself ; not an afterthought bolted on after the core feature ships.</p>
+        <span class="writing-link">Read on Medium &nearr;</span>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <a href="https://medium.com/@thezanypm" target="_blank" class="btn-outline">Read More on Medium &nearr;</a>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═════════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="reveal">
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">What I Bring<br>to the Table</h2>
+    </div>
+    <!-- EDIT: Each .skill-block is one skill area -->
+    <div class="skills-grid reveal">
+      <div class="skill-block">
+        <div class="skill-icon">&#128179;</div>
+        <div class="skill-name">Payments &amp; Fintech</div>
+        <div class="skill-tags"><span class="skill-tag">SEPA</span><span class="skill-tag">Faster Payments</span><span class="skill-tag">Escrow</span><span class="skill-tag">Wallet flows</span><span class="skill-tag">KYC / AML</span><span class="skill-tag">Ledger systems</span><span class="skill-tag">FX</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">&#128506;</div>
+        <div class="skill-name">Product Strategy</div>
+        <div class="skill-tags"><span class="skill-tag">Roadmapping</span><span class="skill-tag">Discovery</span><span class="skill-tag">PRDs</span><span class="skill-tag">GTM</span><span class="skill-tag">Scoping</span><span class="skill-tag">0 to 1 launches</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">&#128225;</div>
+        <div class="skill-name">Telecom Products</div>
+        <div class="skill-tags"><span class="skill-tag">MVNO</span><span class="skill-tag">VoIP / SIP</span><span class="skill-tag">ISP</span><span class="skill-tag">FTTH</span><span class="skill-tag">Interconnect</span><span class="skill-tag">VAS</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">&#9881;&#65039;</div>
+        <div class="skill-name">Execution</div>
+        <div class="skill-tags"><span class="skill-tag">Agile / Scrum</span><span class="skill-tag">Sprint mgmt</span><span class="skill-tag">Backlog</span><span class="skill-tag">User stories</span><span class="skill-tag">Acceptance criteria</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">&#128202;</div>
+        <div class="skill-name">Analytics</div>
+        <div class="skill-tags"><span class="skill-tag">Mixpanel</span><span class="skill-tag">GA4</span><span class="skill-tag">SQL</span><span class="skill-tag">Funnel analysis</span><span class="skill-tag">Retention metrics</span></div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">&#129309;</div>
+        <div class="skill-name">Cross-Functional</div>
+        <div class="skill-tags"><span class="skill-tag">Engineering</span><span class="skill-tag">Compliance</span><span class="skill-tag">Operations</span><span class="skill-tag">Design</span><span class="skill-tag">Marketing</span><span class="skill-tag">Exec stakeholders</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CERTIFICATIONS ════════════════════════════════════ -->
+  <div id="certs">
+    <div class="certs-inner reveal">
+      <div class="section-label" style="margin-bottom:0">Certifications</div>
+      <!-- EDIT: Add/remove cert items -->
+      <div class="cert-item"><span class="cert-icon">&#127885;</span><div><div class="cert-name">Certified Product Manager (CPM&reg;)</div><div class="cert-issuer">AIPMM</div></div></div>
+      <div class="cert-item"><span class="cert-icon">&#127891;</span><div><div class="cert-name">Intro to Software Product Management</div><div class="cert-issuer">University of Alberta</div></div></div>
+      <div class="cert-item"><span class="cert-icon">&#128268;</span><div><div class="cert-name">API Product Manager</div><div class="cert-issuer">API Academy</div></div></div>
+      <div class="cert-item"><span class="cert-icon">&#128274;</span><div><div class="cert-name">API Security Architect</div><div class="cert-issuer">API Academy</div></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTACT ═══════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="contact-bg">CONNECT</div>
+    <div style="position:relative;z-index:2">
+      <div class="contact-eyebrow reveal">Available for new opportunities</div>
+      <!-- EDIT: Contact headline and description -->
+      <h2 class="contact-title reveal">Let&apos;s Build<br><em>Something</em><br>Real.</h2>
+      <p class="contact-sub reveal">Open to Senior PM roles globally. Especially interested in payments infrastructure, fintech platforms, and trust-critical products.</p>
+      <div class="contact-links reveal">
+        <!-- EDIT: Your contact links -->
+        <a href="mailto:adelajaadesolak@gmail.com" class="btn-primary">adelajaadesolak@gmail.com &nearr;</a>
+        <a href="https://linkedin.com/in/koredeadelaja" target="_blank" class="btn-outline">LinkedIn &nearr;</a>
+        <a href="https://medium.com/@thezanypm" target="_blank" class="btn-outline">Medium &nearr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-copy">&copy; 2026 Korede Adelaja. Built with intent.</div>
+    <div class="footer-links">
+      <a href="mailto:adelajaadesolak@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/koredeadelaja" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@thezanypm" target="_blank">Medium</a>
+      <a href="https://drive.google.com/file/d/1higKZw-b7GZqbJ5tYh67kyvQVf_WBRZf/view?usp=sharing" target="_blank">Resume &darr;</a>
+    </div>
+  </footer>
+
+  <script>
+/* ═══════════════════════════════════════
+   KOREDE ADELAJA — PORTFOLIO
+   script.js — Interactions & behaviour
+═══════════════════════════════════════ */
+
+// ─── CUSTOM CURSOR ───────────────────
+var cursor = document.getElementById('cursor');
+var ring   = document.getElementById('cursorRing');
+var mx = 0, my = 0, rx = 0, ry = 0;
+
+if (cursor && ring) {
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * .12;
+    ry += (my - ry) * .12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+      ring.style.opacity     = '.3';
+      ring.style.transform   = 'translate(-50%,-50%) scale(1.5)';
+    });
+    el.addEventListener('mouseleave', function() {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.opacity     = '.5';
+      ring.style.transform   = 'translate(-50%,-50%) scale(1)';
+    });
+  });
+}
+
+// ─── NAV SCROLL EFFECT ───────────────
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ─── SMOOTH SCROLL FOR NAV LINKS ─────
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    // Close mobile nav if open
+    var mobileNav = document.getElementById('mobileNav');
+    var hamburger = document.getElementById('hamburger');
+    if (mobileNav) mobileNav.classList.remove('open');
+    if (hamburger) hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+    // Scroll with offset for fixed nav
+    var offset = nav ? nav.offsetHeight : 70;
+    var top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  });
+});
+
+// ─── MOBILE HAMBURGER MENU ───────────
+var hamburger  = document.getElementById('hamburger');
+var mobileNav  = document.getElementById('mobileNav');
+var mobileClose = document.getElementById('mobileClose');
+
+function openMenu() {
+  mobileNav.classList.add('open');
+  hamburger.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  mobileNav.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+if (hamburger)  hamburger.addEventListener('click',  openMenu);
+if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+
+// ─── THEME TOGGLE ────────────────────
+var html      = document.documentElement;
+var toggleBtn = document.getElementById('themeToggle');
+var themeIcon = toggleBtn ? toggleBtn.querySelector('.theme-icon') : null;
+
+function setTheme(theme) {
+  if (theme === 'light') {
+    html.classList.add('light');
+    if (themeIcon) themeIcon.textContent = '\u2600';
+  } else {
+    html.classList.remove('light');
+    if (themeIcon) themeIcon.textContent = '\u263D';
+  }
+  localStorage.setItem('theme', theme);
+}
+
+// Apply saved theme
+setTheme(localStorage.getItem('theme') || 'dark');
+
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', function() {
+    setTheme(html.classList.contains('light') ? 'dark' : 'light');
+  });
+}
+
+// ─── SCROLL REVEAL ───────────────────
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry, i) {
+    if (entry.isIntersecting) {
+      setTimeout(function() {
+        entry.target.classList.add('visible');
+      }, i * 80);
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(function(el) {
+  obs.observe(el);
+});
+
+  </script>
+</body>
+</html>
