@@ -122,3 +122,38 @@ var obs = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.reveal').forEach(function(el) {
   obs.observe(el);
 });
+
+// ─── MEDIUM FEED ─────────────────────
+(function loadMediumFeed() {
+  var container = document.getElementById('mediumPosts');
+  if (!container) return;
+  var url = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@thezanypm&count=3';
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.items || !data.items.length) {
+        container.innerHTML = '<div class="blog-loading">No posts found.</div>';
+        return;
+      }
+      container.innerHTML = '';
+      data.items.forEach(function(item) {
+        var yr  = new Date(item.pubDate).getFullYear();
+        var tag = (item.categories && item.categories[0]) ? item.categories[0] : 'Medium';
+        var tmp = document.createElement('div');
+        tmp.innerHTML = item.description || '';
+        var excerpt = (tmp.textContent || '').substring(0,120).trim() + '\u2026';
+        var card = document.createElement('a');
+        card.href = item.link; card.target = '_blank';
+        card.className = 'blog-card medium-post';
+        card.innerHTML =
+          '<div class="blog-meta"><span class="blog-tag">'+tag+'</span><span class="blog-date">'+yr+'</span></div>'+
+          '<h3 class="blog-title">'+item.title+'</h3>'+
+          '<p class="blog-excerpt">'+excerpt+'</p>'+
+          '<span class="blog-read">Read on Medium \u2197</span>';
+        container.appendChild(card);
+      });
+    })
+    .catch(function() {
+      container.innerHTML = '<div class="blog-loading">Could not load Medium feed. <a href="https://medium.com/@thezanypm" target="_blank" style="color:var(--accent)">Visit Medium \u2197</a></div>';
+    });
+})();

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korede Adelaja — Beyond the CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">KA&reg;</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Work</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="personality.html" style="color:var(--accent)">Personality</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">&#9790;</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileClose">&times;</button>
+    <a href="index.html#about">About</a>
+    <a href="index.html#projects">Work</a>
+    <a href="blog.html">Blog</a>
+    <a href="personality.html">Personality</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="personality-hero">
+    <div class="personality-hero-bg">HUMAN</div>
+    <div class="hero-tag">Beyond the CV &nbsp;&middot;&nbsp; The full picture</div>
+    <h1 class="hero-name" style="margin-top:.75rem">The person<br><em>behind the PM</em></h1>
+    <p class="personality-intro">
+      Product work is what I do. This page is who I am; fashion, food, music,
+      and a few things I would have done with my life if fintech hadn&apos;t got there first.
+    </p>
+  </section>
+
+  <!-- FUN FACTS -->
+  <section style="background:var(--bg2);padding:6rem 4rem;">
+    <div class="reveal">
+      <div class="section-label">Fun Facts</div>
+      <h2 class="section-title">A few things<br><em>to know about me</em></h2>
+    </div>
+    <div class="facts-grid reveal">
+      <div class="fact-card">
+        <div class="fact-num">01</div>
+        <p class="fact-text">
+          I <strong>love fashion</strong>. Not in a passive &ldquo;I like clothes&rdquo; way &mdash;
+          in a &ldquo;I&apos;ve been known to plan outfits a week ahead&rdquo; kind of way.
+          I like the idea of a personal style, and somewhere in a parallel life, I&apos;m a stylist.
+          That&apos;s still a sidequest I fully intend to complete.
+        </p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">02</div>
+        <p class="fact-text">
+          I <strong>almost became a DJ</strong>. First year of uni, I was deep into music—any genre, 
+          anytime, and basically ran the common room DSTV remote. 
+          I asked my dad for a DJ controller once and his reply sent me straight back to my books.
+        </p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">03</div>
+        <p class="fact-text">
+          I <strong>take food seriously</strong>. Eating out, cooking in, trying recipes I have no
+          business attempting, restaurant-hopping with friends &mdash; food is how I explore culture,
+          unwind, and honestly, how I do some of my best thinking.
+          A good meal solves most problems.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section style="background:var(--bg);padding:6rem 4rem;">
+    <div class="reveal">
+      <div class="section-label">Interests</div>
+      <h2 class="section-title">What I&apos;m<br><em>into</em></h2>
+    </div>
+    <div class="interests-list reveal">
+      <span class="interest-tag">Fashion &amp; Styling</span>
+      <span class="interest-tag">Music &amp; Raving</span>
+      <span class="interest-tag">Food &amp; Restaurants</span>
+      <span class="interest-tag">Gqom</span>
+      <span class="interest-tag">Fuji Music</span>
+      <span class="interest-tag">Afrobeats</span>
+      <span class="interest-tag">House Music</span>
+      <span class="interest-tag">Cooking</span>
+      <span class="interest-tag">Product Thinking</span>
+      <span class="interest-tag">African Tech</span>
+      <span class="interest-tag">Fintech</span>
+      <span class="interest-tag">Street Style</span>
+    </div>
+  </section>
+
+  <!-- SPOTIFY PLAYLISTS -->
+  <section style="background:var(--bg2);padding:6rem 4rem;">
+    <div class="reveal">
+      <div class="section-label">Now Playing</div>
+      <h2 class="section-title">What&apos;s on<br><em>my playlist</em></h2>
+      <p style="color:var(--muted);font-size:.95rem;margin-top:1rem;max-width:500px;line-height:1.7;">
+        Music is background, therapy, and fuel, depending on the day.
+        These are some of my favourite playlists I’ve created; ones I really enjoyed making and that help me get through the day.
+      </p>
+    </div>
+    <div class="playlists-grid reveal">
+      <div class="playlist-item">
+        <div class="playlist-label">&#9654;&nbsp; Gqom</div>
+        <iframe src="https://open.spotify.com/embed/playlist/2mzYVT1dYHv21VJj0tVVyJ"
+          width="100%" height="200" frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+      <div class="playlist-item">
+        <div class="playlist-label">&#9654;&nbsp; Mara Music</div>
+        <iframe src="https://open.spotify.com/embed/playlist/4vKEwjigW0H00QwgFrEXrK"
+          width="100%" height="200" frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+      <div class="playlist-item">
+        <div class="playlist-label">&#9654;&nbsp; Rap Music</div>
+        <iframe src="https://open.spotify.com/embed/playlist/6efZS80Oprl3vBVuBEm8SB"
+          width="100%" height="200" frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+      <div class="playlist-item">
+        <div class="playlist-label">&#9654;&nbsp; Fuji Music</div>
+        <iframe src="https://open.spotify.com/embed/playlist/3Ad7ECzuWF2nisuE6cZIOa"
+          width="100%" height="200" frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery-section" style="background:var(--bg);padding:6rem 4rem;">
+    <div class="reveal">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">Life outside<br><em>the product doc</em></h2>
+      <p style="color:var(--muted);font-size:.95rem;margin-top:1rem;max-width:500px;line-height:1.7;">
+        Fashion, food, moments, and everything in between.
+      </p>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid reveal" id="galleryGrid">
+      <div class="gallery-empty">No photos yet. Add some below &darr;</div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="gallery-lightbox" id="galleryLightbox">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <button class="lightbox-prev" onclick="lightboxNav(-1)">&#8592;</button>
+      <button class="lightbox-next" onclick="lightboxNav(1)">&#8594;</button>
+      <div class="lightbox-inner">
+        <img id="lightboxImg" src="" alt="" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+
+    <!-- Admin toggle (hidden — visit ?admin=true to access) -->
+    <div class="gallery-admin-bar" id="galleryAdminBar" style="display:none;">
+      <span style="font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;">Manage gallery</span>
+      <button class="admin-toggle-btn" id="galleryAdminBtn">&#9998; Manage Photos</button>
+    </div>
+
+    <!-- Admin panel -->
+    <div class="gallery-admin-panel" id="galleryAdminPanel">
+
+      <!-- Password gate -->
+      <div id="galleryPwdGate">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:1.5rem;">Gallery Admin</h3>
+        <div style="max-width:380px;">
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem;">Enter your password to upload and manage photos.</p>
+          <div class="admin-field">
+            <label style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.5rem;">Password</label>
+            <input type="password" id="galleryPwdInput" placeholder="Enter password"
+              style="background:var(--bg3);border:1px solid var(--border);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.75rem 1rem;outline:none;width:100%;box-sizing:border-box;transition:border-color .2s;"
+              onkeydown="if(event.key==='Enter') checkGalleryPwd()" />
+          </div>
+          <button class="btn-primary" style="margin-top:1rem;" onclick="checkGalleryPwd()">Unlock &nearr;</button>
+          <div id="galleryPwdMsg" style="display:none;font-family:'DM Mono',monospace;font-size:.72rem;padding:.65rem 1rem;margin-top:.75rem;"></div>
+        </div>
+      </div>
+
+      <!-- Upload form -->
+      <div id="galleryUploadForm" style="display:none;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:2rem;">Upload Photos</h3>
+        <div style="max-width:640px;display:flex;flex-direction:column;gap:1.25rem;">
+          <div>
+            <label style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.5rem;">Select Photos (multiple allowed)</label>
+            <input type="file" id="galleryFileInput" accept="image/*" multiple onchange="previewGalleryFiles(this)"
+              style="background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:.85rem;padding:.75rem 1rem;width:100%;box-sizing:border-box;" />
+          </div>
+          <div id="galleryPreviewStrip" style="display:none;">
+            <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;">Preview &amp; Add Captions</div>
+            <div id="galleryPreviews" style="display:flex;flex-direction:column;gap:1rem;"></div>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn-primary" onclick="uploadGalleryPhotos()">Add to Gallery &nearr;</button>
+            <button class="btn-outline" onclick="clearGalleryUpload()">Clear</button>
+          </div>
+          <div id="galleryUploadMsg" style="display:none;font-family:'DM Mono',monospace;font-size:.72rem;padding:.65rem 1rem;"></div>
+        </div>
+
+        <!-- Manage existing -->
+        <div style="margin-top:4rem;border-top:1px solid var(--border);padding-top:3rem;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);margin-bottom:1.5rem;">Manage Photos</h3>
+          <div id="galleryManageGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BACK -->
+  <section style="background:var(--bg2);padding:5rem 4rem;text-align:center;">
+    <p style="color:var(--muted);font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem;">
+      Seen enough? Let&apos;s talk work.
+    </p>
+    <a href="index.html" class="btn-primary">Back to Portfolio &nearr;</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">&copy; 2026 Korede Adelaja.</div>
+    <div class="footer-links">
+      <a href="mailto:adelajaadesolak@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/koredeadelaja" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@thezanypm" target="_blank">Medium</a>
+      <a href="index.html">Portfolio</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <style>
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-top: 3rem;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      aspect-ratio: 1 / 1;
+      cursor: pointer; background: var(--bg3);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .45s ease, filter .45s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.06); filter: brightness(.75); }
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem; color: #fff;
+      letter-spacing: .06em; line-height: 1.4;
+    }
+    .gallery-item.wide  { grid-column: span 2; }
+    .gallery-item.tall  { grid-row: span 2; }
+    .gallery-empty {
+      grid-column: 1 / -1; text-align: center;
+      padding: 4rem; color: var(--muted);
+      font-family: 'DM Mono', monospace; font-size: .8rem;
+      border: 1px dashed var(--border);
+    }
+
+    /* Lightbox */
+    .gallery-lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.93);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .gallery-lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox-inner { position: relative; max-width: 90vw; max-height: 88vh; text-align: center; }
+    .lightbox-inner img { max-width: 100%; max-height: 80vh; object-fit: contain; display: block; }
+    .lightbox-caption {
+      font-family: 'DM Mono', monospace; font-size: .72rem;
+      color: rgba(255,255,255,.55); margin-top: .85rem;
+      letter-spacing: .08em;
+    }
+    .lightbox-close {
+      position: fixed; top: 1.5rem; right: 2rem;
+      background: none; border: none; color: rgba(255,255,255,.7);
+      font-size: 2rem; cursor: pointer; line-height: 1; z-index: 1;
+    }
+    .lightbox-close:hover { color: #fff; }
+    .lightbox-prev, .lightbox-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: rgba(255,255,255,.5);
+      font-size: 2rem; cursor: pointer; padding: 1rem;
+    }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-prev:hover, .lightbox-next:hover { color: #fff; }
+
+    /* Gallery admin */
+    .gallery-admin-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .gallery-admin-panel {
+      display: none; margin-top: 2rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      padding: 3rem;
+    }
+    .gallery-admin-panel.open { display: block; }
+    .gallery-manage-thumb {
+      position: relative; aspect-ratio: 1/1; overflow: hidden;
+      background: var(--bg3);
+    }
+    .gallery-manage-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-manage-thumb .del-btn {
+      position: absolute; top: .4rem; right: .4rem;
+      background: rgba(239,68,68,.85); border: none; color: #fff;
+      width: 26px; height: 26px; border-radius: 50%;
+      font-size: .85rem; cursor: pointer; line-height: 26px; text-align: center;
+      display: none;
+    }
+    .gallery-manage-thumb:hover .del-btn { display: block; }
+
+    .gallery-preview-row {
+      display: grid; grid-template-columns: 100px 1fr; gap: 1rem; align-items: center;
+      padding: .75rem; background: var(--bg3); border: 1px solid var(--border);
+    }
+    .gallery-preview-row img { width: 100px; height: 80px; object-fit: cover; display: block; }
+    .gallery-preview-row input {
+      background: var(--bg2); border: 1px solid var(--border);
+      color: var(--white); font-family: 'DM Sans', sans-serif;
+      font-size: .85rem; padding: .6rem .85rem; outline: none; width: 100%;
+      box-sizing: border-box; transition: border-color .2s;
+    }
+    .gallery-preview-row input:focus { border-color: var(--accent); }
+
+    @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 768px)  {
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      #galleryManageGrid { grid-template-columns: repeat(3,1fr) !important; }
+      .gallery-admin-panel { padding: 1.5rem; }
+    }
+  </style>
+  <script>
+  /* ── GALLERY SYSTEM ── */
+  var GALLERY_KEY = 'ka_gallery_photos';
+  var GALLERY_PWD = 'korede2026'; // same as blog password
+  var galleryUnlocked = false;
+  var lightboxItems = [];
+  var lightboxIndex = 0;
+  var pendingFiles = [];
+
+  function getPhotos() {
+    try { return JSON.parse(localStorage.getItem(GALLERY_KEY) || '[]'); } catch(e){ return []; }
+  }
+  function savePhotos(p) { localStorage.setItem(GALLERY_KEY, JSON.stringify(p)); }
+
+  function renderGallery() {
+    var photos = getPhotos();
+    var grid = document.getElementById('galleryGrid');
+    if (!photos.length) {
+      grid.innerHTML = <!-- Your comment here '<div class="gallery-empty">No photos yet. Add some below &darr;</div>';-->
+      lightboxItems = [];
+      return;
+    }
+    lightboxItems = photos;
+    // Masonry-style: every 5th item gets wide, every 7th gets tall
+    grid.innerHTML = photos.map(function(p, i){
+      var cls = '';
+      if (i % 7 === 2) cls = ' tall';
+      else if (i % 5 === 0 && i !== 0) cls = ' wide';
+      return '<div class="gallery-item'+cls+'" onclick="openLightbox('+i+')">'
+        + '<img src="'+p.src+'" alt="'+(p.caption||'')+'" loading="lazy">'
+        + '<div class="gallery-item-overlay">'
+        + (p.caption ? '<div class="gallery-item-caption">'+p.caption+'</div>' : '')
+        + '</div></div>';
+    }).join('');
+  }
+
+  // Lightbox
+  function openLightbox(idx) {
+    lightboxIndex = idx;
+    showLightboxSlide();
+    document.getElementById('galleryLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('galleryLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lightboxNav(dir) {
+    lightboxIndex = (lightboxIndex + dir + lightboxItems.length) % lightboxItems.length;
+    showLightboxSlide();
+  }
+  function showLightboxSlide() {
+    var item = lightboxItems[lightboxIndex];
+    document.getElementById('lightboxImg').src = item.src;
+    document.getElementById('lightboxCaption').textContent = item.caption || '';
+  }
+  document.getElementById('galleryLightbox').addEventListener('click', function(e){
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if (!document.getElementById('galleryLightbox').classList.contains('open')) return;
+    if (e.key==='Escape') closeLightbox();
+    if (e.key==='ArrowLeft') lightboxNav(-1);
+    if (e.key==='ArrowRight') lightboxNav(1);
+  });
+
+  // Admin
+  function checkGalleryPwd() {
+    var val = document.getElementById('galleryPwdInput').value;
+    var msg = document.getElementById('galleryPwdMsg');
+    if (val === GALLERY_PWD) {
+      document.getElementById('galleryPwdGate').style.display = 'none';
+      document.getElementById('galleryUploadForm').style.display = 'block';
+      galleryUnlocked = true;
+      renderManageGallery();
+    } else {
+      msg.textContent = 'Incorrect password.';
+      msg.style.cssText = 'display:block;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;';
+    }
+  }
+
+  // ── Gallery admin — only visible on ?admin=true ──
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('admin') === 'true') {
+      var bar = document.getElementById('galleryAdminBar');
+      if (bar) bar.style.display = 'flex';
+    }
+  })();
+  document.getElementById('galleryAdminBtn').addEventListener('click', function(){
+    var panel = document.getElementById('galleryAdminPanel');
+    panel.classList.toggle('open');
+    this.textContent = panel.classList.contains('open') ? '✕ Close' : '✎ Manage Photos';
+  });
+
+  // Preview files before upload
+  function previewGalleryFiles(input) {
+    var strip = document.getElementById('galleryPreviewStrip');
+    var previews = document.getElementById('galleryPreviews');
+    if (!input.files || !input.files.length) { strip.style.display='none'; return; }
+    pendingFiles = [];
+    previews.innerHTML = '';
+    var files = Array.from(input.files);
+    var loaded = 0;
+    files.forEach(function(file, i){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        pendingFiles[i] = { src: e.target.result, caption: '' };
+        var row = document.createElement('div');
+        row.className = 'gallery-preview-row';
+        row.innerHTML = '<img src="'+e.target.result+'" alt="">'
+          + '<input type="text" placeholder="Add a caption (optional)" oninput="pendingFiles['+i+'].caption=this.value" />';
+        previews.appendChild(row);
+        loaded++;
+        if (loaded === files.length) strip.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function uploadGalleryPhotos() {
+    var msg = document.getElementById('galleryUploadMsg');
+    if (!pendingFiles.length) {
+      msg.textContent = 'Please select at least one photo.';
+      msg.style.cssText = 'display:block;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;';
+      return;
+    }
+    var photos = getPhotos();
+    pendingFiles.forEach(function(f){
+      if (f && f.src) photos.push({ id: 'g-'+Date.now()+'-'+Math.random(), src: f.src, caption: f.caption||'' });
+    });
+    savePhotos(photos);
+    renderGallery();
+    renderManageGallery();
+    clearGalleryUpload();
+    msg.textContent = 'Photos added to gallery!';
+    msg.style.cssText = 'display:block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;';
+    setTimeout(function(){ msg.style.display='none'; }, 3000);
+  }
+
+  function clearGalleryUpload() {
+    document.getElementById('galleryFileInput').value = '';
+    document.getElementById('galleryPreviewStrip').style.display = 'none';
+    document.getElementById('galleryPreviews').innerHTML = '';
+    pendingFiles = [];
+  }
+
+  function renderManageGallery() {
+    var photos = getPhotos();
+    var grid = document.getElementById('galleryManageGrid');
+    if (!photos.length) {
+      grid.innerHTML = '<p style="color:var(--muted);font-size:.85rem;grid-column:1/-1;">No photos yet.</p>';
+      return;
+    }
+    grid.innerHTML = photos.map(function(p){
+      return '<div class="gallery-manage-thumb">'
+        + '<img src="'+p.src+'" alt="'+(p.caption||'')+'">'
+        + '<button class="del-btn" onclick="deleteGalleryPhoto(\''+p.id+'\')" title="Delete">&times;</button>'
+        + '</div>';
+    }).join('');
+  }
+
+  function deleteGalleryPhoto(id) {
+    if (!confirm('Remove this photo?')) return;
+    savePhotos(getPhotos().filter(function(p){ return p.id !== id; }));
+    renderGallery();
+    renderManageGallery();
+  }
+
+  // Init
+  renderGallery();
+  </script>
+</body>
+</html>
